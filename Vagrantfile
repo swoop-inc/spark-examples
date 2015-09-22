@@ -16,14 +16,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "precise32"
 
   # Customize the box
-        config.vm.box_url = "http://files.vagrantup.com/precise32.box" 
-	config.vm.provision :shell, inline: "sudo apt-get -y update"
-	config.vm.provision :shell, inline: "sudo apt-get -y install vim"
-	config.vm.provision :shell, inline: "sudo apt-get -y install openjdk-7-jdk"
-	config.vm.provision :shell, inline: "wget http://d3kbcqa49mib13.cloudfront.net/spark-1.2.0-bin-hadoop1.tgz"
-	config.vm.provision :shell, inline: "tar -zxf spark-1.2.0-bin-hadoop1.tgz"  
-  
-  
+  config.vm.box_url = "http://files.vagrantup.com/precise32.box"
+  config.vm.provision :shell, path:"provision.sh"
+
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
   # `vagrant box outdated`. This is not recommended.

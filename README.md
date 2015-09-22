@@ -6,46 +6,23 @@ Vagrant is a front-end for VirtualBox, and allows the easy creation and launchin
 
 Please see the Vagrant site for further details about Vagrant.
 
-Dependencies:
+##Dependencies
 
-- [Install Vagrant](http://www.vagrantup.com/downloads.html)
 - [Install VirtualBox](https://www.virtualbox.org/wiki/Downloads)
+- [Install Vagrant](http://www.vagrantup.com/downloads.html)
+
+##Setup
 
 1. Clone this repository
-2. Run **vagrant up**.  This will take a while as software is downloaded and installed.  You will then have a running VM but you won't be connected to it yet.
-3. Run **vagrant ssh** to connect to your VM
-4. **cd spark-1.1.0-bin-hadoop1**  (your version may vary e.g. spark-1.2.0-bin-hadoop1)
-5. **bin/spark-shell**
-6. You are now in the spark-shell environment
-7. **:load /vagrant_data/http_logs.scala**  (will run that script)
-8. After quite a bit of output you will see the program results
+1. Run **vagrant up**.  This will take a while as software is downloaded and installed.  You will then have a running VM but you won't be connected to it yet.
+1. Run **vagrant ssh** to connect to your VM
+1. **spark/bin/spark-shell**
+1. You are now in the spark-shell environment
+1. **:load /vagrant_data/wordcount.scala**
+1. After quite a bit of output you will see the program results
 
-The results will look something like this:
+**Note:**
 
-(1450,/english/index.html)
+- These jobs are designed to be run from within the spark console (as opposed to using spark-submit).
 
-(1181,/french/competition/matchprog8860.htm)
-
-(940,/french/competition/matchstat8860.htm)
-
-(934,/english/competition/matchprog8860.htm)
-
-(932,/)
-
-(890,/french/index.html)
-
-(849,/english/competition/matchstat8860.htm)
-
-(339,/english/frntpage.htm)
-
-...
-
-These jobs are designed to be run from within the spark console (as opposed to using spark-submit).
-
-Vagrant configuration information is from: http://thegrimmscientist.com/2014/12/01/vagrant-tutorial-spark-in-a-vm/ which references 
-Spark version 1.1.  All 1.1 references in that blog post should be changed to the current Spark version which as of 
-Feb 2015 is 1.2.  
-
-
-
-
+- If you use any SQL/Hive functionality in Spark you must always start `spark-shell` from the ssh login folder. This is because the default Hive metastore database is embedded Derby, which will create its database (`metastore_db` folder) in the current folder. If you start Spark from another folder you'll end up with multiple Hive metastores which will cause a lot of problems down the road. 

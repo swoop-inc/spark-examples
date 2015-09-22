@@ -15,5 +15,3 @@ val switched = wordCounts.map( x => (x._2, x._1))
 
 // Sort and print
 switched.sortByKey(true).collect.foreach(println)
-
-
